@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Book>
+<a asp-action="AddBook">Create new Book</a>
+
+<h1>Books</h1>
+<table class="table table-border">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Author</th>
+			<th>Price</th>
+			<th>CountPage</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var book in Model)
+		{
+			<tr>
+				<td>@book.Name</td>
+				<td>@book.Author?.Name</td>
+				<td>@book.Price</td>
+				<td>@book.CountPage</td>
+				<td>
+					<a class="btn btn-danger" asp-action="DeleteBook" asp-route-id="@book.Id">Delete</a>
+					<a class="btn btn-warning" asp-action="EditBook" asp-route-id="@book.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a asp-action="AddAuthor">Create new Author</a>
+<h1>Authors</h1>
+<table class="table table-border">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Birth</th>
+			<th>WriteBooks</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var book in Model)
+		{
+			<tr>
+				<td>@book.Author?.Name</td>
+				<td>@book.Author?.Birth</td>
+				<td>@book.Author?.WriteBooks</td>
+				<td>
+					@* <a class="btn btn-warning" asp-action="DeleteAuthorAuthor" asp-route-id="@Author.Id">Edit</a>
+					<a class="btn btn-warning" asp-action="EditAuthor" asp-route-id="@Author.Id">Edit</a> *@
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
